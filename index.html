@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scrap Setu | Buy & Sell Scrap</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f7f3;color:#222}
+header{background:#087b43;color:white;padding:22px;text-align:center}
+header h1{margin:0;font-size:30px}
+header p{margin:8px 0 0}
+.hero{text-align:center;padding:35px 15px;background:#e0f4e7}
+.hero h2{color:#087b43;font-size:27px}
+.container{max-width:650px;margin:20px auto;padding:15px}
+.card{background:white;padding:20px;border-radius:14px;box-shadow:0 3px 12px #0001;margin-bottom:20px}
+input,select,button{width:100%;padding:13px;margin:8px 0;border:1px solid #ccc;border-radius:8px;font-size:16px}
+button{background:#087b43;color:white;border:0;font-weight:bold;cursor:pointer}
+.listing{border:1px solid #ddd;padding:13px;border-radius:9px;margin-top:12px}
+footer{text-align:center;background:#075d35;color:white;padding:20px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>♻️ Scrap Setu</h1>
+<p>Buy • Sell • Recycle</p>
+</header>
+
+<section class="hero">
+<h2>Your Scrap, Your Marketplace!</h2>
+<p>Buy and sell scrap materials easily in one place.</p>
+</section>
+
+<div class="container">
+<div class="card">
+<h2>Sell Your Scrap</h2>
+<form id="scrapForm">
+<input id="name" placeholder="Your Name" required>
+<input id="mobile" type="tel" placeholder="Mobile Number" required>
+<select id="material" required>
+<option value="">Select Scrap Material</option>
+<option>Iron</option>
+<option>Copper</option>
+<option>Aluminium</option>
+<option>Brass</option>
+<option>Paper</option>
+<option>Cardboard</option>
+<option>Plastic</option>
+<option>Battery</option>
+</select>
+<input id="quantity" type="number" placeholder="Quantity (KG)" required>
+<input id="price" type="number" placeholder="Expected Price per KG (₹)" required>
+<input id="city" placeholder="Your City" required>
+<button type="submit">Post Scrap Listing</button>
+</form>
+</div>
+
+<div class="card">
+<h2>Latest Scrap Listings</h2>
+<div id="listings">No listings yet.</div>
+</div>
+</div>
+
+<footer>
+<h3>Scrap Setu</h3>
+<p>Connecting Scrap Buyers and Sellers</p>
+<p>Reduce Waste. Reuse Resources. Recycle.</p>
+</footer>
+
+<script>
+const form=document.getElementById("scrapForm");
+const listings=document.getElementById("listings");
+
+form.addEventListener("submit",function(e){
+e.preventDefault();
+const item={
+name:document.getElementById("name").value,
+mobile:document.getElementById("mobile").value,
+material:document.getElementById("material").value,
+quantity:document.getElementById("quantity").value,
+price:document.getElementById("price").value,
+city:document.getElementById("city").value
+};
+if(listings.innerText==="No listings yet.") listings.innerHTML="";
+const div=document.createElement("div");
+div.className="listing";
+div.innerHTML="<h3>"+item.material+"</h3><p>Quantity: "+item.quantity+" KG</p><p>Expected price: ₹"+item.price+"/KG</p><p>City: "+item.city+"</p><p>Seller: "+item.name+"</p><p>Mobile: "+item.mobile+"</p>";
+listings.prepend(div);
+form.reset();
+});
+</script>
+</body>
+</html>
